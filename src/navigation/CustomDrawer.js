@@ -5,6 +5,8 @@ import {
   DrawerContentScrollView,
 } from "@react-navigation/drawer";
 import Animated from "react-native-reanimated";
+import { connect } from "react-redux";
+import { setSelectedTab } from "../stores/tab/tabActions";
 
 import { MainLayout } from "../screens";
 
@@ -13,7 +15,7 @@ import Logo from "../../assets/images/Shinstarr_logo.png";
 
 const Drawer = createDrawerNavigator();
 
-const CustomDrawerItem = ({ label, icon }) => {
+const CustomDrawerItem = ({ label, icon, isFocused, onPress }) => {
   return (
     <TouchableOpacity
       style={{
@@ -23,7 +25,9 @@ const CustomDrawerItem = ({ label, icon }) => {
         alignItems: "center",
         paddingLeft: 12,
         borderRadius: 8,
-      }}>
+        backgroundColor: isFocused ? "rgba(0, 0, 0, 0.1)" : null,
+      }}
+      onPress={onPress}>
       <Icon name={icon} size={25} color="#fff" />
       <Text
         style={{
@@ -39,7 +43,7 @@ const CustomDrawerItem = ({ label, icon }) => {
   );
 };
 
-const CustomDrawerContent = ({ navigation }) => {
+const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
   return (
     <DrawerContentScrollView
       scrollEnabled={true}
@@ -87,16 +91,38 @@ const CustomDrawerContent = ({ navigation }) => {
         </TouchableOpacity>
 
         <View style={{ flex: 1, marginTop: 24 }}>
-          <CustomDrawerItem label={"Home"} icon={"home"}></CustomDrawerItem>
+          <CustomDrawerItem
+            label={"Home"}
+            icon={"home"}
+            isFocused={selectedTab === "Home"}
+            onPress={() => {
+              setSelectedTab("Home");
+              navigation.navigate("MainLayout");
+            }}></CustomDrawerItem>
           <CustomDrawerItem
             label={"My Wallet"}
-            icon={"wallet"}></CustomDrawerItem>
+            icon={"wallet"}
+            isFocused={selectedTab === "My Wallet"}
+            onPress={() => {
+              setSelectedTab("My Wallet");
+              navigation.navigate("MainLayout");
+            }}></CustomDrawerItem>
           <CustomDrawerItem
             label={"Notification"}
-            icon={"notification"}></CustomDrawerItem>
+            icon={"notification"}
+            isFocused={selectedTab === "Notification"}
+            onPress={() => {
+              setSelectedTab("Notification");
+              navigation.navigate("MainLayout");
+            }}></CustomDrawerItem>
           <CustomDrawerItem
             label={"Favourite"}
-            icon={"hearto"}></CustomDrawerItem>
+            icon={"hearto"}
+            isFocused={selectedTab === "Favourite"}
+            onPress={() => {
+              setSelectedTab("Favourite");
+              navigation.navigate("MainLayout");
+            }}></CustomDrawerItem>
 
           <View
             style={{
@@ -109,27 +135,49 @@ const CustomDrawerContent = ({ navigation }) => {
 
           <CustomDrawerItem
             label={"Track Your Order"}
-            icon={"enviromento"}></CustomDrawerItem>
-          <CustomDrawerItem label={"Coupons"} icon={"rest"}></CustomDrawerItem>
+            icon={"enviromento"}
+            isFocused={selectedTab === "Track Your Order"}
+            onPress={() => {
+              setSelectedTab("Track Your Order");
+              navigation.navigate("MainLayout");
+            }}></CustomDrawerItem>
+          <CustomDrawerItem
+            label={"Coupons"}
+            icon={"rest"}
+            isFocused={selectedTab === "Coupons"}
+            onPress={() => {
+              setSelectedTab("Coupons");
+              navigation.navigate("MainLayout");
+            }}></CustomDrawerItem>
           <CustomDrawerItem
             label={"Settings"}
-            icon={"setting"}></CustomDrawerItem>
+            icon={"setting"}
+            isFocused={selectedTab === "Settings"}
+            onPress={() => {
+              setSelectedTab("Settings");
+              navigation.navigate("MainLayout");
+            }}></CustomDrawerItem>
           <CustomDrawerItem
             label={"Help Center"}
-            icon={"message1"}></CustomDrawerItem>
+            icon={"message1"}
+            isFocused={selectedTab === "Help Center"}
+            onPress={() => {
+              setSelectedTab("Help Center");
+              navigation.navigate("MainLayout");
+            }}></CustomDrawerItem>
           <CustomDrawerItem label={"Logout"} icon={"export2"} />
         </View>
 
-        {/*
-        <View style={{marginBottom: 24}}>
-          <CustomDrawerItem label={'Logout'} icon={'export2'} />
+        {/* 마진이 안 먹는 중 나중에 체크, 일단은 위에 나란히
+        <View style={{ marginBottom: 24 }}>
+          <CustomDrawerItem label={"Logout"} icon={"export2"} />
         </View> */}
       </View>
     </DrawerContentScrollView>
   );
 };
 
-const CustomDrawer = () => {
+const CustomDrawer = ({ selectedTab, setSelectedTab }) => {
   const [progress, setProgress] = useState(new Animated.Value(0));
   const scale = Animated.interpolateNode(progress, {
     inputRange: [0, 1],
@@ -161,7 +209,13 @@ const CustomDrawer = () => {
             setProgress(props.progress);
           }, 0);
 
-          return <CustomDrawerContent navigation={props.navigation} />;
+          return (
+            <CustomDrawerContent
+              navigation={props.navigation}
+              selectedTab={selectedTab}
+              setSelectedTab={setSelectedTab}
+            />
+          );
         }}>
         <Drawer.Screen name="MainLayout">
           {props => (
@@ -173,4 +227,16 @@ const CustomDrawer = () => {
   );
 };
 
-export default CustomDrawer;
+const mapStateToProps = state => {
+  return { selectedTab: state.tabReducer.selectedTab };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setSelectedTab: selectedTab => {
+      return dispatch(setSelectedTab(selectedTab));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CustomDrawer);
