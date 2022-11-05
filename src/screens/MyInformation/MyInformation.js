@@ -1,8 +1,8 @@
 import React from "react";
 import { View } from "react-native";
 
-const Favourite = () => {
+const MyInformation = () => {
   return <View></View>;
 };
 
-export default Favourite;
+export default MyInformation;
