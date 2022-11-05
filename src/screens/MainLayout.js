@@ -10,7 +10,7 @@ const MainLayout = ({ drawerAnimationStyle }) => {
         flex: 1,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "white",
+        backgroundColor: "#fff",
         ...drawerAnimationStyle,
       }}>
       <Text>MainLayout</Text>

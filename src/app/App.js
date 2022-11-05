@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 // import {SafeAreaView, Text, View} from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {NavigationContainer} from '@react-navigation/native';
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
 
-import CustomDrawer from '../navigation/CustomDrawer';
+import CustomDrawer from "../navigation/CustomDrawer";
 
 const Stack = createStackNavigator();
 
@@ -15,7 +15,7 @@ const App = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName={'Home'}>
+        initialRouteName={"Home"}>
         <Stack.Screen name="Home" component={CustomDrawer} />
       </Stack.Navigator>
     </NavigationContainer>

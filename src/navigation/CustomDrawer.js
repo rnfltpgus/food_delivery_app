@@ -144,8 +144,6 @@ const CustomDrawer = () => {
   return (
     <View style={{ flex: 1, backgroundColor: "#C83C2B" }}>
       <Drawer.Navigator
-        backBehavior="none"
-        overlayColor="transparent"
         drawerType="slide"
         screenOptions={{
           drawerStyle: {
