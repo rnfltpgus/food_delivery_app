@@ -21,7 +21,6 @@ const CustomDrawerItem = ({ label, icon, isFocused, onPress }) => {
         style={{
           marginLeft: 15,
           color: "#fff",
-          fontFamily: "Poppins-SemiBold",
           fontSize: 16,
           lineHeight: 22,
         }}>

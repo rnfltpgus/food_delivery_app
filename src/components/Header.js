@@ -13,7 +13,6 @@ const Header = ({ containerStyle, title, leftComponent, rightComponent }) => {
         }}>
         <Text
           style={{
-            fontFamily: "Poppins-SemiBold",
             fontSize: 16,
             lineHeight: 22,
             fontWeight: "bold",

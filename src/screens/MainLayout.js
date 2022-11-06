@@ -1,13 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  Image,
-  FlatList,
-  Dimensions,
-} from "react-native";
+import { View, TouchableOpacity, FlatList, Dimensions } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -15,7 +7,6 @@ import Animated, {
 } from "react-native-reanimated";
 import LinearGradient from "react-native-linear-gradient";
 import { connect } from "react-redux";
-import { TouchableHighlight } from "react-native-gesture-handler";
 
 import { setSelectedTab } from "../stores/tab/tabActions";
 import { Home, CartTab, MyInformation, Notification } from "../screens";
@@ -219,9 +210,6 @@ const MainLayout = ({
             flexDirection: "row",
             paddingHorizontal: 12,
             paddingBottom: 10,
-            // borderTopLeftRadius: 20,
-            // borderTopRightRadius: 20,
-            // borderWidth: 1,
             backgroundColor: "#fff",
           }}>
           <TabButton

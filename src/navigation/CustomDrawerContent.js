@@ -25,18 +25,17 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            marginTop: "12",
+            marginTop: 12,
           }}
           onPress={() => console.log("Profile")}>
           <Image
             source={Logo}
-            style={{ width: 50, height: 50, borderRadius: "12" }}
+            style={{ width: 50, height: 50, borderRadius: 12 }}
           />
-          <View style={{ marginLeft: "12" }}>
+          <View style={{ marginLeft: 12 }}>
             <Text
               style={{
                 color: "#fff",
-                fontFamily: "Poppins-SemiBold",
                 fontSize: 16,
                 lineHeight: 22,
               }}>
@@ -45,7 +44,6 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
             <Text
               style={{
                 color: "#fff",
-                fontFamily: "Poppins-Regular",
                 fontSize: 14,
                 lineHeight: 22,
               }}>

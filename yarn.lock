@@ -5686,6 +5686,11 @@
   "resolved" "https://registry.npmjs.org/range-parser/-/range-parser-1.2.1.tgz"
   "version" "1.2.1"
 
+"react-daum-postcode@^3.1.1":
+  "integrity" "sha512-IFlC8XBSK+uobSIBHaWlxeecYpv9RhCFNu4YJ3+CrfGyEVdc4+yaaUH6BIfJbTZOybVx0V3s4nUeAEsssXBNJg=="
+  "resolved" "https://registry.npmjs.org/react-daum-postcode/-/react-daum-postcode-3.1.1.tgz"
+  "version" "3.1.1"
+
 "react-devtools-core@4.24.0":
   "integrity" "sha512-Rw7FzYOOzcfyUPaAm9P3g0tFdGqGq2LLiAI+wjYcp6CsF3DeeMrRS3HZAho4s273C29G/DJhx0e8BpRE/QZNGg=="
   "resolved" "https://registry.npmjs.org/react-devtools-core/-/react-devtools-core-4.24.0.tgz"
@@ -5861,7 +5866,7 @@
     "react-shallow-renderer" "^16.15.0"
     "scheduler" "^0.22.0"
 
-"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.1.0", "react@>=16.0", "react@>=17.0.0", "react@18.1.0":
+"react@*", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0 || ^18.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^18.1.0", "react@>=16.0", "react@>=16.8.0", "react@>=17.0.0", "react@18.1.0":
   "integrity" "sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.1.0.tgz"
   "version" "18.1.0"
