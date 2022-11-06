@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   Image,
   FlatList,
+  Dimensions,
 } from "react-native";
 import Animated, {
   useSharedValue,
@@ -14,13 +15,36 @@ import Animated, {
 } from "react-native-reanimated";
 import LinearGradient from "react-native-linear-gradient";
 import { connect } from "react-redux";
+import { TouchableHighlight } from "react-native-gesture-handler";
 
 import { setSelectedTab } from "../stores/tab/tabActions";
-import { Home, Search, CartTab, Favourite, Notification } from "../screens";
+import { Home, CartTab, MyInformation, Notification } from "../screens";
 import Header from "../components/Header";
 import TabButton from "../components/TabButton";
 
 import Icon from "react-native-vector-icons/AntDesign";
+
+const bottom_tabs = [
+  {
+    id: 0,
+    label: "Home",
+  },
+  {
+    id: 1,
+    label: "Notification",
+  },
+  {
+    id: 2,
+    label: "Cart",
+  },
+  {
+    id: 3,
+    label: "MyInformation",
+  },
+];
+
+const SCREEN_WIDTH = Dimensions.get("window").width;
+const SCREEN_HEIGHT = Dimensions.get("window").height;
 
 const MainLayout = ({
   drawerAnimationStyle,
@@ -28,74 +52,83 @@ const MainLayout = ({
   selectedTab,
   setSelectedTab,
 }) => {
-  // const homeTabFlex = useSharedValue(1);
-  // const homeTabColor = useSharedValue("#fff");
-  // const notificationTabFlex = useSharedValue(1);
-  // const notificationTabColor = useSharedValue("#fff");
-  // const cartTabFlex = useSharedValue(1);
-  // const cartTabColor = useSharedValue("#fff");
-  // const myInformationTabFlex = useSharedValue(1);
-  // const myInformationTabColor = useSharedValue("#fff");
+  const flatListRef = useRef();
+  const homeTabFlex = useSharedValue(1);
+  const homeTabColor = useSharedValue("#fff");
+  const notificationTabFlex = useSharedValue(1);
+  const notificationTabColor = useSharedValue("#fff");
+  const cartTabFlex = useSharedValue(1);
+  const cartTabColor = useSharedValue("#fff");
+  const myInformationTabFlex = useSharedValue(1);
+  const myInformationTabColor = useSharedValue("#fff");
 
-  // const homeFlexStyle = useAnimatedStyle(() => {
-  //   return { flex: homeTabFlex.value };
-  // });
-  // const homeColorStyle = useAnimatedStyle(() => {
-  //   return { backgroundColor: homeTabColor.value };
-  // });
-  // const notificationFlexStyle = useAnimatedStyle(() => {
-  //   return { flex: notificationTabFlex.value };
-  // });
-  // const notificationColorStyle = useAnimatedStyle(() => {
-  //   return { backgroundColor: notificationTabColor.value };
-  // });
-  // const cartFlexStyle = useAnimatedStyle(() => {
-  //   return { flex: cartTabFlex.value };
-  // });
-  // const cartColorStyle = useAnimatedStyle(() => {
-  //   return { backgroundColor: cartTabColor.value };
-  // });
-  // const myInformationFlexStyle = useAnimatedStyle(() => {
-  //   return { flex: myInformationTabFlex.value };
-  // });
-  // const myInformationColorStyle = useAnimatedStyle(() => {
-  //   return { backgroundColor: myInformationTabColor.value };
-  // });
+  const homeFlexStyle = useAnimatedStyle(() => {
+    return { flex: homeTabFlex.value };
+  });
+  const homeColorStyle = useAnimatedStyle(() => {
+    return { backgroundColor: homeTabColor.value };
+  });
+  const notificationFlexStyle = useAnimatedStyle(() => {
+    return { flex: notificationTabFlex.value };
+  });
+  const notificationColorStyle = useAnimatedStyle(() => {
+    return { backgroundColor: notificationTabColor.value };
+  });
+  const cartFlexStyle = useAnimatedStyle(() => {
+    return { flex: cartTabFlex.value };
+  });
+  const cartColorStyle = useAnimatedStyle(() => {
+    return { backgroundColor: cartTabColor.value };
+  });
+  const myInformationFlexStyle = useAnimatedStyle(() => {
+    return { flex: myInformationTabFlex.value };
+  });
+  const myInformationColorStyle = useAnimatedStyle(() => {
+    return { backgroundColor: myInformationTabColor.value };
+  });
 
   useEffect(() => {
     setSelectedTab("Home");
   }, []);
 
-  // useEffect(() => {
-  //   if (selectedTab === "Home") {
-  //     homeTabFlex.value = withTiming(4, { duration: 500 });
-  //     homeTabColor.value = withTiming("#af1", { duration: 500 });
-  //   } else {
-  //     homeTabFlex.value = withTiming(1, { duration: 500 });
-  //     homeTabColor.value = withTiming("#fff", { duration: 500 });
-  //   }
-  //   if (selectedTab === "notification") {
-  //     notificationTabFlex.value = withTiming(4, { duration: 500 });
-  //     notificationTabColor.value = withTiming("#af1", { duration: 500 });
-  //   } else {
-  //     notificationTabFlex.value = withTiming(1, { duration: 500 });
-  //     notificationTabColor.value = withTiming("#fff", { duration: 500 });
-  //   }
-  //   if (selectedTab === "cart") {
-  //     cartTabFlex.value = withTiming(4, { duration: 500 });
-  //     cartTabColor.value = withTiming("#af1", { duration: 500 });
-  //   } else {
-  //     cartTabFlex.value = withTiming(1, { duration: 500 });
-  //     cartTabColor.value = withTiming("#fff", { duration: 500 });
-  //   }
-  //   if (selectedTab === "myInformation") {
-  //     myInformationTabFlex.value = withTiming(4, { duration: 500 });
-  //     myInformationTabColor.value = withTiming("#af1", { duration: 500 });
-  //   } else {
-  //     myInformationTabFlex.value = withTiming(1, { duration: 500 });
-  //     myInformationTabColor.value = withTiming("#fff", { duration: 500 });
-  //   }
-  // }, [selectedTab]);
+  useEffect(() => {
+    if (selectedTab === "Home") {
+      flatListRef?.current?.scrollToIndex({ index: 0, animated: false });
+
+      homeTabFlex.value = withTiming(4, { duration: 500 });
+      homeTabColor.value = withTiming("#fff", { duration: 500 });
+    } else {
+      homeTabFlex.value = withTiming(1, { duration: 500 });
+      homeTabColor.value = withTiming("#fff", { duration: 500 });
+    }
+    if (selectedTab === "Notification") {
+      flatListRef?.current?.scrollToIndex({ index: 1, animated: false });
+
+      notificationTabFlex.value = withTiming(4, { duration: 500 });
+      notificationTabColor.value = withTiming("#fff", { duration: 500 });
+    } else {
+      notificationTabFlex.value = withTiming(1, { duration: 500 });
+      notificationTabColor.value = withTiming("#fff", { duration: 500 });
+    }
+    if (selectedTab === "Cart") {
+      flatListRef?.current?.scrollToIndex({ index: 2, animated: false });
+
+      cartTabFlex.value = withTiming(4, { duration: 500 });
+      cartTabColor.value = withTiming("#fff", { duration: 500 });
+    } else {
+      cartTabFlex.value = withTiming(1, { duration: 500 });
+      cartTabColor.value = withTiming("#fff", { duration: 500 });
+    }
+    if (selectedTab === "MyInformation") {
+      flatListRef?.current?.scrollToIndex({ index: 3, animated: false });
+
+      myInformationTabFlex.value = withTiming(4, { duration: 500 });
+      myInformationTabColor.value = withTiming("#fff", { duration: 500 });
+    } else {
+      myInformationTabFlex.value = withTiming(1, { duration: 500 });
+      myInformationTabColor.value = withTiming("#fff", { duration: 500 });
+    }
+  }, [selectedTab]);
 
   return (
     <Animated.View
@@ -139,7 +172,31 @@ const MainLayout = ({
         }
       />
       <View style={{ flex: 1 }}>
-        <Text>MainLayout</Text>
+        <FlatList
+          ref={flatListRef}
+          horizontal
+          scrollEnabled={false}
+          pagingEnabled
+          snapToAlignment="center"
+          snapToInterval={SCREEN_WIDTH}
+          showsHorizontalScrollIndicator={false}
+          data={bottom_tabs}
+          keyExtractor={item => `${item.id}`}
+          renderItem={({ item, index }) => {
+            return (
+              <View
+                style={{
+                  height: SCREEN_HEIGHT,
+                  width: SCREEN_WIDTH,
+                }}>
+                {item.label === "Home" && <Home />}
+                {item.label === "Notification" && <Notification />}
+                {item.label === "Cart" && <CartTab />}
+                {item.label === "MyInformation" && <MyInformation />}
+              </View>
+            );
+          }}
+        />
       </View>
       <View style={{ height: 100, justifyContent: "flex-end" }}>
         <LinearGradient
@@ -171,33 +228,33 @@ const MainLayout = ({
             label={"Home"}
             icon={"home"}
             isFocused={selectedTab === "Home"}
-            // outerContainerStyle={homeFlexStyle}
-            // innerContainerStyle={homeColorStyle}
+            outerContainerStyle={homeFlexStyle}
+            innerContainerStyle={homeColorStyle}
             onPress={() => setSelectedTab("Home")}
           />
           <TabButton
-            label={"notification"}
+            label={"Notification"}
             icon={"notification"}
-            isFocused={selectedTab === "notification"}
-            // outerContainerStyle={notificationFlexStyle}
-            // innerContainerStyle={notificationColorStyle}
-            onPress={() => setSelectedTab("notification")}
+            isFocused={selectedTab === "Notification"}
+            outerContainerStyle={notificationFlexStyle}
+            innerContainerStyle={notificationColorStyle}
+            onPress={() => setSelectedTab("Notification")}
           />
           <TabButton
-            label={"cart"}
+            label={"Cart"}
             icon={"shoppingcart"}
-            isFocused={selectedTab === "cart"}
-            // outerContainerStyle={cartFlexStyle}
-            // innerContainerStyle={cartColorStyle}
-            onPress={() => setSelectedTab("cart")}
+            isFocused={selectedTab === "Cart"}
+            outerContainerStyle={cartFlexStyle}
+            innerContainerStyle={cartColorStyle}
+            onPress={() => setSelectedTab("Cart")}
           />
           <TabButton
-            label={"myInformation"}
+            label={"MyInformation"}
             icon={"user"}
-            isFocused={selectedTab === "myInformation"}
-            // outerContainerStyle={myInformationFlexStyle}
-            // innerContainerStyle={myInformationColorStyle}
-            onPress={() => setSelectedTab("myInformation")}
+            isFocused={selectedTab === "MyInformation"}
+            outerContainerStyle={myInformationFlexStyle}
+            innerContainerStyle={myInformationColorStyle}
+            onPress={() => setSelectedTab("MyInformation")}
           />
         </View>
       </View>
