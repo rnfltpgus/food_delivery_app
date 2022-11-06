@@ -127,13 +127,12 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
               setSelectedTab("Help Center");
               navigation.navigate("MainLayout");
             }}></CustomDrawerItem>
-          <CustomDrawerItem label={"Logout"} icon={"export2"} />
+          <CustomDrawerItem
+            label={"Logout"}
+            icon={"export2"}
+            onPress={() => alert("Logout!!!")}
+          />
         </View>
-
-        {/* 마진이 안 먹는 중 나중에 체크, 일단은 위에 나란히
-        <View style={{ marginBottom: 24 }}>
-          <CustomDrawerItem label={"Logout"} icon={"export2"} />
-        </View> */}
       </View>
     </DrawerContentScrollView>
   );

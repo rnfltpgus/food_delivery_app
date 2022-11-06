@@ -156,8 +156,7 @@ const MainLayout = ({
               alignItems: "center",
               justifyContent: "center",
             }}
-            // onPress={() => navigation.openDrawer()}
-          >
+            onPress={() => alert("CartTab Click!!!")}>
             <Icon name="shoppingcart" size={25} color="#000" />
           </TouchableOpacity>
         }
