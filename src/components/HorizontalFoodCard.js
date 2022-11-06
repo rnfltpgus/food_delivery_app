@@ -40,7 +40,7 @@ const HorizontalFoodCard = ({ containerStyle, imageStyle, item, onPress }) => {
             lineHeight: 22,
             fontSize: 14,
           }}>
-          {item.description}
+          {item.horoscope}
         </Text>
       </View>
     </TouchableOpacity>

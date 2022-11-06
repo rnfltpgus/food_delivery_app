@@ -7,7 +7,7 @@ import {
   Dimensions,
 } from "react-native";
 
-import { HorizontalFoodCard, Section } from "../../components";
+import { HorizontalFoodCard, MagazineCard, Section } from "../../components";
 import { dummyData } from "../../../constants";
 import { renderSearch } from "../../utils";
 
@@ -16,6 +16,7 @@ const SCREEN_WIDTH = Dimensions.get("window").width;
 const Home = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(1);
   const [selectedMenuType, setSelectedMenuType] = useState(1);
+  const [magazine, setMagazine] = useState([]);
   const [recommends, setRecommends] = useState([]);
   const [menuList, setMenuList] = useState([]);
 
@@ -24,9 +25,13 @@ const Home = () => {
   }, []);
 
   const handleChangeCategory = (categoryId, menuTypeId) => {
+    let selectedMagazine = dummyData.menu.find(a => a.name === "Magazine");
     let selectedRecommend = dummyData.menu.find(a => a.name === "Recommended");
     let selectedMenu = dummyData.menu.find(a => a.id === menuTypeId);
 
+    setMagazine(
+      selectedRecommend?.list.filter(a => a.categories.includes(categoryId)),
+    );
     setRecommends(
       selectedRecommend?.list.filter(a => a.categories.includes(categoryId)),
     );
@@ -110,6 +115,31 @@ const Home = () => {
     );
   };
 
+  const renderPopularSection = () => {
+    return (
+      <Section
+        title="OLHSO Magazine"
+        onPress={() => console.log("Show all popular items")}>
+        <FlatList
+          data={magazine}
+          keyExtractor={item => `${item.id}`}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item, index }) => (
+            <MagazineCard
+              containerStyle={{
+                marginLeft: index === 0 ? 24 : 18,
+                marginRight: index === magazine.length - 1 ? 24 : 0,
+              }}
+              item={item}
+              onPress={() => console.log("HorizontalFoodCard")}
+            />
+          )}
+        />
+      </Section>
+    );
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -155,6 +185,7 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <View>
+            {renderPopularSection()}
             {renderRecommendedSection()}
             {renderMenuTypes()}
           </View>

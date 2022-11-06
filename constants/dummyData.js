@@ -1,10 +1,29 @@
-const chickenBBQ = {
+const categories = [
+  {
+    id: 1,
+    name: "Korean BBQ",
+  },
+  {
+    id: 2,
+    name: "Voge",
+  },
+  {
+    id: 3,
+    name: "Side",
+  },
+  {
+    id: 4,
+    name: "Drinks",
+  },
+];
+
+const chicken = {
   id: 1,
   name: "Chicken",
   description: "Chicken patty BBQ",
   categories: [1, 2],
   price: 15.99,
-  calories: 78,
+  horoscope: "⭐️ 4.5 (5,000+)",
 };
 
 const Barbecue = {
@@ -13,7 +32,7 @@ const Barbecue = {
   description: "Barbecue patty BBQ",
   categories: [1, 2],
   price: 10.99,
-  calories: 78,
+  horoscope: "⭐️ 4.5 (5,000+)",
 };
 
 const hotTacos = {
@@ -22,7 +41,7 @@ const hotTacos = {
   description: "Mexican tortilla & tacos",
   categories: [1, 3],
   price: 10.99,
-  calories: 78,
+  horoscope: "⭐️ 4.5 (5,000+)",
 };
 
 const vegBiryani = {
@@ -31,74 +50,64 @@ const vegBiryani = {
   description: "Chicken salad",
   categories: [1, 2, 3],
   price: 10.29,
-  calories: 78,
+  horoscope: "⭐️ 4.5 (5,000+)",
 };
 
 const wrapSandwich = {
   id: 5,
   name: "Wrap Sandwich",
   description: "Grilled vegetables sandwich",
-  categories: [1, 2],
+  categories: [1, 5],
   price: 10.99,
-  calories: 78,
+  horoscope: "⭐️ 4.5 (5,000+)",
 };
 
 const menu = [
   {
     id: 1,
-    name: "Korean BBQ",
+    name: "Barbecue",
     list: [
       Barbecue,
-      chickenBBQ,
+      chicken,
       hotTacos,
       // wrapSandwich, vegBiryani
     ],
   },
   {
     id: 2,
-    name: "Voge",
+    name: "Chicken",
     list: [
       Barbecue,
-      chickenBBQ,
+      chicken,
       vegBiryani,
       //  wrapSandwich, hotTacos
     ],
   },
   {
     id: 3,
-    name: "Side",
+    name: "HotTacos",
     list: [
       Barbecue,
-      chickenBBQ,
+      chicken,
       vegBiryani,
       //  hotTacos, wrapSandwich
     ],
   },
   {
     id: 4,
-    name: "Drinks",
-    list: [
-      chickenBBQ,
-      hotTacos,
-      wrapSandwich,
-      //  vegBiryani, Barbecue
-    ],
-  },
-  {
-    id: 5,
-    name: "chicken",
+    name: "Magazine",
     list: [
       Barbecue,
-      chickenBBQ,
+      chicken,
       vegBiryani,
       // hotTacos, wrapSandwich
     ],
   },
   {
-    id: 6,
+    id: 5,
     name: "Recommended",
     list: [
-      chickenBBQ,
+      chicken,
       vegBiryani,
       Barbecue,
       // hotTacos, wrapSandwich

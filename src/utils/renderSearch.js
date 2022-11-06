@@ -11,7 +11,6 @@ const renderSearch = () => {
         height: 50,
         alignItems: "center",
         marginTop: 20,
-        marginBottom: 20,
         marginHorizontal: 15,
         marginVertical: 8,
         paddingHorizontal: 12,
