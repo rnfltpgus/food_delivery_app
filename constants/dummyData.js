@@ -47,32 +47,62 @@ const menu = [
   {
     id: 1,
     name: "Korean BBQ",
-    list: [Barbecue, chickenBBQ, hotTacos, wrapSandwich, vegBiryani],
+    list: [
+      Barbecue,
+      chickenBBQ,
+      hotTacos,
+      // wrapSandwich, vegBiryani
+    ],
   },
   {
     id: 2,
     name: "Voge",
-    list: [Barbecue, chickenBBQ, vegBiryani, wrapSandwich, hotTacos],
+    list: [
+      Barbecue,
+      chickenBBQ,
+      vegBiryani,
+      //  wrapSandwich, hotTacos
+    ],
   },
   {
     id: 3,
     name: "Side",
-    list: [Barbecue, chickenBBQ, vegBiryani, hotTacos, wrapSandwich],
+    list: [
+      Barbecue,
+      chickenBBQ,
+      vegBiryani,
+      //  hotTacos, wrapSandwich
+    ],
   },
   {
     id: 4,
     name: "Drinks",
-    list: [chickenBBQ, hotTacos, wrapSandwich, vegBiryani, Barbecue],
+    list: [
+      chickenBBQ,
+      hotTacos,
+      wrapSandwich,
+      //  vegBiryani, Barbecue
+    ],
   },
   {
     id: 5,
     name: "chicken",
-    list: [Barbecue, chickenBBQ, vegBiryani, hotTacos, wrapSandwich],
+    list: [
+      Barbecue,
+      chickenBBQ,
+      vegBiryani,
+      // hotTacos, wrapSandwich
+    ],
   },
   {
     id: 6,
-    name: "Chinese food",
-    list: [chickenBBQ, vegBiryani, Barbecue, hotTacos, wrapSandwich],
+    name: "Recommended",
+    list: [
+      chickenBBQ,
+      vegBiryani,
+      Barbecue,
+      // hotTacos, wrapSandwich
+    ],
   },
 ];
 

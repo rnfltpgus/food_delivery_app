@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
 
-import { HorizontalFoodCard } from "../../components";
+import { HorizontalFoodCard, Section } from "../../components";
 import { dummyData } from "../../../constants";
 import { renderSearch } from "../../utils";
+
+const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const Home = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(1);
   const [selectedMenuType, setSelectedMenuType] = useState(1);
+  const [recommends, setRecommends] = useState([]);
   const [menuList, setMenuList] = useState([]);
 
   useEffect(() => {
@@ -15,8 +24,12 @@ const Home = () => {
   }, []);
 
   const handleChangeCategory = (categoryId, menuTypeId) => {
+    let selectedRecommend = dummyData.menu.find(a => a.name === "Recommended");
     let selectedMenu = dummyData.menu.find(a => a.id === menuTypeId);
 
+    setRecommends(
+      selectedRecommend?.list.filter(a => a.categories.includes(categoryId)),
+    );
     setMenuList(
       selectedMenu?.list.filter(a => a.categories.includes(categoryId)),
     );
@@ -60,6 +73,43 @@ const Home = () => {
     );
   };
 
+  const renderRecommendedSection = () => {
+    return (
+      <Section
+        title="Recommended"
+        onPress={() => console.log("Show all recommended")}>
+        <FlatList
+          data={recommends}
+          keyExtractor={item => `${item.id}`}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item, index }) => (
+            <HorizontalFoodCard
+              containerStyle={{
+                height: 180,
+                width: SCREEN_WIDTH * 0.75,
+                marginLeft: index === 0 ? 24 : 18,
+                marginRight: index === recommends.length - 1 ? 24 : 0,
+                paddingRight: 12,
+                alignItems: "center",
+                marginBottom: 20,
+              }}
+              imageStyle={{
+                borderRadius: 12,
+                backgroundColor: "#DDDDDD",
+                margin: 25,
+                height: 150,
+                width: 150,
+              }}
+              item={item}
+              onPress={() => console.log("HorizontalFoodCard")}
+            />
+          )}
+        />
+      </Section>
+    );
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -72,10 +122,9 @@ const Home = () => {
         <View style={{ marginHorizontal: 20 }}>
           <Text
             style={{
-              color: "#000",
+              color: "#898B9A",
               fontSize: 16,
               lineHeight: 22,
-              color: "#898B9A",
             }}>
             Address
           </Text>
@@ -104,7 +153,12 @@ const Home = () => {
         data={menuList}
         keyExtractor={item => `${item.id}`}
         showsVerticalScrollIndicator={false}
-        ListHeaderComponent={<View>{renderMenuTypes()}</View>}
+        ListHeaderComponent={
+          <View>
+            {renderRecommendedSection()}
+            {renderMenuTypes()}
+          </View>
+        }
         renderItem={({ item, index }) => {
           return (
             <HorizontalFoodCard
