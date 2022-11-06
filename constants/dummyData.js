@@ -1,28 +1,9 @@
-const categories = [
-  {
-    id: 1,
-    name: "Korean BBQ",
-  },
-  {
-    id: 2,
-    name: "Voge",
-  },
-  {
-    id: 3,
-    name: "Side",
-  },
-  {
-    id: 4,
-    name: "Drinks",
-  },
-];
-
 const chicken = {
   id: 1,
   name: "Chicken",
   description: "Chicken patty BBQ",
   categories: [1, 2],
-  price: 15.99,
+  price: 10.99,
   horoscope: "⭐️ 4.5 (5,000+)",
 };
 
@@ -57,7 +38,7 @@ const wrapSandwich = {
   id: 5,
   name: "Wrap Sandwich",
   description: "Grilled vegetables sandwich",
-  categories: [1, 5],
+  categories: [1, 4],
   price: 10.99,
   horoscope: "⭐️ 4.5 (5,000+)",
 };
@@ -66,52 +47,27 @@ const menu = [
   {
     id: 1,
     name: "Barbecue",
-    list: [
-      Barbecue,
-      chicken,
-      hotTacos,
-      // wrapSandwich, vegBiryani
-    ],
+    list: [Barbecue, chicken, hotTacos, wrapSandwich, vegBiryani],
   },
   {
     id: 2,
     name: "Chicken",
-    list: [
-      Barbecue,
-      chicken,
-      vegBiryani,
-      //  wrapSandwich, hotTacos
-    ],
+    list: [Barbecue, chicken, wrapSandwich, wrapSandwich, hotTacos],
   },
   {
     id: 3,
     name: "HotTacos",
-    list: [
-      Barbecue,
-      chicken,
-      vegBiryani,
-      //  hotTacos, wrapSandwich
-    ],
+    list: [Barbecue, chicken, vegBiryani, hotTacos, wrapSandwich],
   },
   {
     id: 4,
     name: "Magazine",
-    list: [
-      Barbecue,
-      chicken,
-      vegBiryani,
-      // hotTacos, wrapSandwich
-    ],
+    list: [Barbecue, chicken, vegBiryani, hotTacos, wrapSandwich],
   },
   {
     id: 5,
-    name: "Recommended",
-    list: [
-      chicken,
-      vegBiryani,
-      Barbecue,
-      // hotTacos, wrapSandwich
-    ],
+    name: "Today's pick",
+    list: [chicken, vegBiryani, Barbecue, hotTacos, wrapSandwich],
   },
 ];
 

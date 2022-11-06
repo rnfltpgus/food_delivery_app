@@ -26,11 +26,11 @@ const Home = () => {
 
   const handleChangeCategory = (categoryId, menuTypeId) => {
     let selectedMagazine = dummyData.menu.find(a => a.name === "Magazine");
-    let selectedRecommend = dummyData.menu.find(a => a.name === "Recommended");
+    let selectedRecommend = dummyData.menu.find(a => a.name === "Today's pick");
     let selectedMenu = dummyData.menu.find(a => a.id === menuTypeId);
 
     setMagazine(
-      selectedRecommend?.list.filter(a => a.categories.includes(categoryId)),
+      selectedMagazine?.list.filter(a => a.categories.includes(categoryId)),
     );
     setRecommends(
       selectedRecommend?.list.filter(a => a.categories.includes(categoryId)),
