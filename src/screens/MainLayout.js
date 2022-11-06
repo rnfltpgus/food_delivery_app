@@ -10,29 +10,11 @@ import { connect } from "react-redux";
 
 import { setSelectedTab } from "../stores/tab/tabActions";
 import { Home, CartTab, MyInformation, Notification } from "../screens";
+import { constants } from "../../constants";
 import Header from "../components/Header";
 import TabButton from "../components/TabButton";
 
 import Icon from "react-native-vector-icons/AntDesign";
-
-const bottom_tabs = [
-  {
-    id: 0,
-    label: "Home",
-  },
-  {
-    id: 1,
-    label: "Notification",
-  },
-  {
-    id: 2,
-    label: "Cart",
-  },
-  {
-    id: 3,
-    label: "MyInformation",
-  },
-];
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SCREEN_HEIGHT = Dimensions.get("window").height;
@@ -170,7 +152,7 @@ const MainLayout = ({
           snapToAlignment="center"
           snapToInterval={SCREEN_WIDTH}
           showsHorizontalScrollIndicator={false}
-          data={bottom_tabs}
+          data={constants.bottom_tabs}
           keyExtractor={item => `${item.id}`}
           renderItem={({ item, index }) => {
             return (

@@ -3,9 +3,9 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { DrawerContentScrollView } from "@react-navigation/drawer";
 
 import CustomDrawerItem from "./CustomDrawerItem";
+import Logo from "../../assets/images/Shinstarr_logo.png";
 
 import Icon from "react-native-vector-icons/AntDesign";
-import Logo from "../../assets/images/Shinstarr_logo.png";
 
 const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
   return (
@@ -17,6 +17,7 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
           style={{
             alignItems: "center",
             justifyContent: "center",
+            marginLeft: 6,
           }}
           onPress={() => navigation.closeDrawer()}>
           <Icon name="close" size={35} color="#fff" />
@@ -51,7 +52,6 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
             </Text>
           </View>
         </TouchableOpacity>
-
         <View style={{ flex: 1, marginTop: 24 }}>
           <CustomDrawerItem
             label={"Home"}
@@ -60,7 +60,8 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
             onPress={() => {
               setSelectedTab("Home");
               navigation.navigate("MainLayout");
-            }}></CustomDrawerItem>
+            }}
+          />
           <CustomDrawerItem
             label={"My Wallet"}
             icon={"wallet"}
@@ -68,7 +69,8 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
             onPress={() => {
               setSelectedTab("My Wallet");
               navigation.navigate("MainLayout");
-            }}></CustomDrawerItem>
+            }}
+          />
           <CustomDrawerItem
             label={"Notification"}
             icon={"notification"}
@@ -76,7 +78,8 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
             onPress={() => {
               setSelectedTab("Notification");
               navigation.navigate("MainLayout");
-            }}></CustomDrawerItem>
+            }}
+          />
           <CustomDrawerItem
             label={"Favourite"}
             icon={"hearto"}
@@ -84,8 +87,8 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
             onPress={() => {
               setSelectedTab("Favourite");
               navigation.navigate("MainLayout");
-            }}></CustomDrawerItem>
-
+            }}
+          />
           <View
             style={{
               height: 1,
@@ -94,7 +97,6 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
               backgroundColor: "#DDDDDD",
             }}
           />
-
           <CustomDrawerItem
             label={"Track Your Order"}
             icon={"enviromento"}
@@ -102,7 +104,8 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
             onPress={() => {
               setSelectedTab("Track Your Order");
               navigation.navigate("MainLayout");
-            }}></CustomDrawerItem>
+            }}
+          />
           <CustomDrawerItem
             label={"Coupons"}
             icon={"rest"}
@@ -110,7 +113,8 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
             onPress={() => {
               setSelectedTab("Coupons");
               navigation.navigate("MainLayout");
-            }}></CustomDrawerItem>
+            }}
+          />
           <CustomDrawerItem
             label={"Settings"}
             icon={"setting"}
@@ -118,7 +122,8 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
             onPress={() => {
               setSelectedTab("Settings");
               navigation.navigate("MainLayout");
-            }}></CustomDrawerItem>
+            }}
+          />
           <CustomDrawerItem
             label={"Help Center"}
             icon={"message1"}
@@ -126,7 +131,8 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
             onPress={() => {
               setSelectedTab("Help Center");
               navigation.navigate("MainLayout");
-            }}></CustomDrawerItem>
+            }}
+          />
           <CustomDrawerItem
             label={"Logout"}
             icon={"export2"}
